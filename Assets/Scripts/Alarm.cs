@@ -7,8 +7,8 @@ public class Alarm : MonoBehaviour
 {
     private AudioSource _audioSource;
     
-    private float _maxVolumeValue = 1.0f;
-    private float _minVolumeValue = 0f;
+    private float _maxVolume = 1.0f;
+    private float _minVolume = 0f;
     private float _volumeChangeSpeed = 0.5f;
 
     private Coroutine _changeVolume;
@@ -16,27 +16,27 @@ public class Alarm : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.volume = _minVolumeValue;
+        _audioSource.volume = _minVolume;
     }
 
     public void Play()
     {
         _audioSource.Play();
 
-        SetValue(_maxVolumeValue);
+        SetVolume(_maxVolume);
     }
 
     public void Stop()
     {
-        SetValue(_minVolumeValue);
+        SetVolume(_minVolume);
 
-        if (_audioSource.volume == _minVolumeValue)
+        if (_audioSource.volume == _minVolume)
         {
             _audioSource.Stop();
         }
     }
 
-    private void SetValue(float targetValue)
+    private void SetVolume(float targetValue)
     {
         if (_changeVolume != null)
         {

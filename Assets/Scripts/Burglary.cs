@@ -13,11 +13,17 @@ public class Burglary : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _alarm.Play();
+        if (collision.TryGetComponent<Player>(out Player player))
+        {
+            _alarm.Play();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _alarm.Stop();
+        if (collision.TryGetComponent<Player>(out Player player))
+        {
+            _alarm.Stop();
+        }
     }
 }
